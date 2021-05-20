@@ -8,32 +8,52 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.get
+import androidx.recyclerview.widget.RecyclerView
+import com.x5s.a_better_way.DummyData.agFacts
+import java.lang.Exception
 
-class FactAdapter(context: Context, facts:List<AgTechModel>):
-    ArrayAdapter<AgTechModel>(context,0,facts) {
+class FactAdapter(private val activity: Context?,private val arrData:List<AgTechModel>): RecyclerView.Adapter<FactAdapter.ViewHolder>() {
 
-    override fun getView(position: Int, convertView: View?, parent:ViewGroup): View{
-        var view = convertView
-        val fact = getItem(position)
-        if (view == null) {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.fact_item,parent, false)
+    override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewHolder {
+        val fact = agFacts
+
+
+        var itemView: View? = null
+        itemView = LayoutInflater.from(activity).inflate(R.layout.fact_item, parent,false)
+
+
+        val logo = itemView.findViewById<ImageView>(R.id.imageLogo)
+        val name = itemView.findViewById<TextView>(R.id.nameTv)
+
+        fact[0].logo.let{
+            logo.setImageResource(fact[0].logo)
         }
-        val logo = view?.findViewById<ImageView>(R.id.imageLogo)
-        val name = view?.findViewById<TextView>(R.id.nameTv)
-        fact?.logo?.let{
-            logo?.setImageResource(fact.logo)
-        }
-        name?.text = fact?.name
+        name.text = fact[0].name
 
-        view?.setOnClickListener{
+        itemView.setOnClickListener{
             val intent = Intent (parent.context, DetailActivity::class.java)
-            intent.putExtra(LOGO_EXTRAs,fact?.logo)
-            intent.putExtra(NAME_EXTRAS,fact?.name)
-            intent.putExtra(FACT_EXTRAS,fact?.fact)
+            intent.putExtra(LOGO_EXTRAs,fact[0].logo)
+            intent.putExtra(NAME_EXTRAS,fact[0].name)
+            intent.putExtra(FACT_EXTRAS,fact[0].fact)
             parent.context.startActivity(intent)
         }
-        return view!!
+
+        return ViewHolder(itemView)
     }
+
+    override fun onBindViewHolder(holder: FactAdapter.ViewHolder, position: Int) {
+        val model = arrData[position]
+
+    }
+
+    override fun getItemCount(): Int {
+        return arrData.size
+    }
+
+    class ViewHolder(view: View?): RecyclerView.ViewHolder(view!!) {
+    }
+
 
     companion object {
         val LOGO_EXTRAs = "Logo_extras"
