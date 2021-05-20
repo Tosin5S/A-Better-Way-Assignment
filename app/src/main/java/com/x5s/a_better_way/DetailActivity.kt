@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -21,9 +20,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        logo = intent.getIntExtra(FactAdapter.LOGO_EXTRAs,0)
-        name = intent.getStringExtra(FactAdapter.NAME_EXTRAS)
-        detail = intent.getStringExtra(FactAdapter.FACT_EXTRAS)
+        logo = intent.getIntExtra(CategoryAdapter.LOGO_EXTRAs,0)
+        name = intent.getStringExtra(CategoryAdapter.NAME_EXTRAS)
+        detail = intent.getStringExtra(CategoryAdapter.FACT_EXTRAS)
         setUpFactDetail()
         setUpData(binding)
     }

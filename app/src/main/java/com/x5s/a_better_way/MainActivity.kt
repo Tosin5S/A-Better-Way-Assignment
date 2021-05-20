@@ -2,7 +2,6 @@ package com.x5s.a_better_way
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.x5s.a_better_way.databinding.ActivityMainBinding
@@ -10,7 +9,7 @@ import com.x5s.a_better_way.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     var binding:ActivityMainBinding? = null
-    var adapter:FactAdapter? = null
+    var adapter:CategoryAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpFact(){
-        adapter = FactAdapter(this, DummyData.agFacts)
+        adapter = CategoryAdapter(this, DummyData.agFacts)
         binding?.factListView?.adapter = adapter
 
     }

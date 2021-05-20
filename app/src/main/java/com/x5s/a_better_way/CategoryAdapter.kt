@@ -5,15 +5,12 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.x5s.a_better_way.DummyData.agFacts
-import java.lang.Exception
 
-class FactAdapter(private val activity: Context?,private val arrData:List<AgTechModel>): RecyclerView.Adapter<FactAdapter.ViewHolder>() {
+class CategoryAdapter(private val activity: Context?, private val arrData:List<ContactModel>): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewHolder {
         val fact = agFacts
@@ -42,7 +39,7 @@ class FactAdapter(private val activity: Context?,private val arrData:List<AgTech
         return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: FactAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
         val model = arrData[position]
 
     }
