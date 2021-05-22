@@ -1,6 +1,6 @@
 package com.x5s.a_better_way
 
-import android.content.Context
+
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,53 +8,92 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.x5s.a_better_way.DummyData.agFacts
-
-class CategoryAdapter(private val activity: Context?, private val arrData:List<ContactModel>): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent:ViewGroup, viewType:Int): ViewHolder {
-        val fact = agFacts
 
 
-        var itemView: View? = null
-        itemView = LayoutInflater.from(activity).inflate(R.layout.fact_item, parent,false)
+class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+
+    private val agFacts = listOf(
+            ContactModel(
+                    "Family",
+                    R.drawable.ic_baseline_family_restroom_24,
+                    "Contact to be added"
+            ),
+            ContactModel(
+                    "Friends",
+                    R.drawable.ic_baseline_emoji_emotions_24,
+                    "Contact to be added"
+            ),
+            ContactModel(
+                    "Colleagues",
+                    R.drawable.ic_baseline_sports_kabaddi_24,
+                    "Contact to be added"
+            ),
+
+            ContactModel(
+                    "Tutors",
+                    R.drawable.ic_baseline_engineering_24,
+                    "Contact to be added"
+            ),
+
+            ContactModel(
+                    "Favorite",
+                    R.drawable.ic_baseline_favorite_24,
+                    "Contact to be added"
+            )
+
+    )
 
 
-        val logo = itemView.findViewById<ImageView>(R.id.imageLogo)
-        val name = itemView.findViewById<TextView>(R.id.nameTv)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.fact_item, parent, false)
 
-        fact[0].logo.let{
-            logo.setImageResource(fact[0].logo)
-        }
-        name.text = fact[0].name
+        return CategoryViewHolder(itemView)
 
-        itemView.setOnClickListener{
-            val intent = Intent (parent.context, DetailActivity::class.java)
-            intent.putExtra(LOGO_EXTRAs,fact[0].logo)
-            intent.putExtra(NAME_EXTRAS,fact[0].name)
-            intent.putExtra(FACT_EXTRAS,fact[0].fact)
-            parent.context.startActivity(intent)
-        }
-
-        return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: CategoryAdapter.ViewHolder, position: Int) {
-        val model = arrData[position]
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        val fact = agFacts[position]
+        holder.bindItem(fact)
+
+
 
     }
+
 
     override fun getItemCount(): Int {
-        return arrData.size
+        return agFacts.size
     }
 
-    class ViewHolder(view: View?): RecyclerView.ViewHolder(view!!) {
+    inner class CategoryViewHolder(itemView: View, ) : RecyclerView.ViewHolder(itemView) {
+        val logo = itemView.findViewById<ImageView>(R.id.imageLogo)
+        val name = itemView.findViewById<TextView>(R.id.nameTv)
+        fun bindItem(fact: ContactModel) {
+            //binding.imageLogo = fact.logo
+            //binding.nameTv = fact.name
+
+
+            fact.logo.let {
+                logo.setImageResource(fact.logo)
+            }
+            name?.text = fact.name
+
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, DetailActivity::class.java)
+                intent.putExtra(LOGO_EXTRAs, fact.logo)
+                intent.putExtra(NAME_EXTRAS, fact.name)
+                intent.putExtra(FACT_EXTRAS, fact.fact)
+                itemView.context.startActivity(intent)
+            }
+
+
+
+        }
     }
 
 
-    companion object {
-        val LOGO_EXTRAs = "Logo_extras"
-        val NAME_EXTRAS = "name_extras"
-        val FACT_EXTRAS = "fact_extras"
+        companion object {
+            val LOGO_EXTRAs = "Logo_extras"
+            val NAME_EXTRAS = "name_extras"
+            val FACT_EXTRAS = "fact_extras"
+        }
     }
-}
