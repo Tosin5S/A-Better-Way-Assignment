@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    private val agFacts = listOf(
+    private val categories = listOf(
             ContactModel(
                     "Family",
                     R.drawable.ic_baseline_family_restroom_24,
@@ -52,7 +52,7 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val fact = agFacts[position]
+        val fact = categories[position]
         holder.bindItem(fact)
 
 
@@ -61,7 +61,7 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
 
 
     override fun getItemCount(): Int {
-        return agFacts.size
+        return categories.size
     }
 
     inner class CategoryViewHolder(itemView: View, ) : RecyclerView.ViewHolder(itemView) {

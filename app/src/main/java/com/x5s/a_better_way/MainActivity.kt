@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.x5s.a_better_way.DummyData.agFacts
 import com.x5s.a_better_way.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
