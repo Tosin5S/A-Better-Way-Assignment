@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Add new Contact"
+        android:text="@string/add_new_contact"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:hint="Name"
+        android:hint="@string/name"
         app:layout_constraintTop_toBottomOf="@+id/title">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="16dp"
-        android:hint="Phone no"
+        android:hint="@string/phone_no"
         app:layout_constraintTop_toBottomOf="@+id/nameIl">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Save"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="@+id/numberIl"
         app:layout_constraintStart_toStartOf="@id/numberIl"
         app:layout_constraintTop_toBottomOf="@id/numberIl"/>
